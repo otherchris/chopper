@@ -1,8 +1,6 @@
-#!/usr/bin/env python3
 """
 Top-level CLI that prompts the user for the project name.
 """
-
 import os
 import sys
 import argparse

@@ -12,6 +12,7 @@ def chop_sample(file_path):
         if not os.path.exists(file_path):
             print(f"Error: File not found: {file_path}")
             return
+        project_name = os.path.basename(os.getcwd())
         play_count = 0
         while True:
             play_count += 1
@@ -30,7 +31,7 @@ def chop_sample(file_path):
                         cur_time = time.time() - start_time
                         markers.append(cur_time)
                         prev_time = markers[-2] if len(markers) > 1 else 0
-                        snippet_name = f"snip_{play_count}_{len(markers)}.wav"
+                        snippet_name = f"{project_name}_{play_count}_{len(markers)}.wav"
                         with wave.open(file_path, 'rb') as r_wf:
                             # include 0.1s buffer before and after snippet boundaries
                             r_params = r_wf.getparams()
@@ -72,14 +73,28 @@ def chop_sample(file_path):
     except Exception as e:
         print(f"Error playing audio file: {str(e)}")
     # After chopping session, review saved snippets
-    snippet_files = [f for f in os.listdir('.') if f.startswith('snip_') and f.endswith('.wav')]
+    snippet_files = [f for f in os.listdir('.') if f.startswith(f"{project_name}_") and f.endswith('.wav')]
     for snippet in snippet_files:
         print(f"Review snippet: {snippet}")
         wave_obj = sa.WaveObject.from_wave_file(snippet)
         play_obj = wave_obj.play()
-        play_obj.wait_done()
-        keep = input("Keep snippet? (y/N): ").strip().lower() == 'y'
-        if not keep:
+        sys.stdout.write("Keep snippet? (y/N): ")
+        sys.stdout.flush()
+        decision = {'keep': None}
+        def on_review_press(key):
+            try:
+                ch = key.char.lower()
+                if ch in ('y', 'n'):
+                    decision['keep'] = (ch == 'y')
+                    play_obj.stop()
+                    return False
+            except AttributeError:
+                pass
+        rev_listener = keyboard.Listener(on_press=on_review_press)
+        rev_listener.start()
+        rev_listener.join()
+        print()
+        if not decision['keep']:
             os.remove(snippet)
             print(f"Deleted snippet: {snippet}")
     print("Snippet review complete.")
