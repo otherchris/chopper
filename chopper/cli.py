@@ -7,8 +7,8 @@ import os
 import sys
 import argparse
 import sounddevice as sd
-from record_snippets import record_input_snippets
-from play_audio import chop_sample, convert_mp3_to_wav
+from chopper.record_snippets import record_input_snippets
+from chopper.play_audio import chop_sample, convert_mp3_to_wav
 
 def main():
     parser = argparse.ArgumentParser(description='CLI for recording or chopping audio snippets')

@@ -1,0 +1,27 @@
+[project]
+name = "chopper"
+version = "0.1.0"
+description = "CLI for chopping sound files"
+authors = [
+    {name = "Chris Caragianis",email = "chriscaragianis@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "pydub (>=0.25.1,<0.26.0)",
+    "simpleaudio (>=1.0.4,<2.0.0)",
+    "pynput (>=1.7.6,<2.0.0)",
+    "sounddevice (>=0.4.6,<0.5.0)",
+    "soundfile (>=0.12.1,<0.13.0)"
+]
+
+[tool.poetry.scripts]
+chopper = "chopper.cli:main"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.4.0"
+

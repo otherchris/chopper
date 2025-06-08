@@ -1,4 +1,3 @@
-
 # Chopper CLI Tool
 
 ### Hey this is some tossed together unsupervised vibe code so do not expect it to work predictably. Files seem to work ok, the live recording mode _works_ but it's not really _right_.
@@ -13,13 +12,7 @@ Chopper is a command-line utility for recording or chopping audio snippets from 
 
 ## Installation
 
-```bash
-# Clone the repository
-git clone <repository_url>
-cd chopper
-
-# Install dependencies
-pip install -r requirements.txt
+pipx install git+https://github.com/otherchris/chopper.git
 ```
 
 > Requires Python 3.6+ and system audio devices.
