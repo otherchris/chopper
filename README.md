@@ -1,4 +1,7 @@
+
 # Chopper CLI Tool
+
+### Hey this is some tossed together unsupervised vibe code so do not expect it to work predictably. Files seem to work ok, the live recording mode _works_ but it's not really _right_.
 
 Chopper is a command-line utility for recording or chopping audio snippets from live input devices or existing audio files.
 
@@ -82,4 +85,4 @@ All snippets are saved in the project folder.
 
 ## License
 
-MIT © Your Name or Organization
+License, that's funny.
