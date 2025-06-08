@@ -1,4 +1,3 @@
-
 # Chopper CLI Tool
 
 ### Hey this is some tossed together unsupervised vibe code so do not expect it to work predictably. Files seem to work ok, the live recording mode _works_ but it's not really _right_.
@@ -19,7 +18,7 @@ git clone <repository_url>
 cd chopper
 
 # Install dependencies
-pip install -r requirements.txt
+python3 -m pip install -e .
 ```
 
 > Requires Python 3.6+ and system audio devices.
@@ -29,7 +28,7 @@ pip install -r requirements.txt
 ### Top-level CLI
 
 ```bash
-python3 cli.py [-f /path/to/audio.mp3|.wav]
+chopper [-f /path/to/audio.mp3|.wav]
 ```
 
 - `-f, --file <file_path>`: Path to an existing audio file. If omitted, enters live recording mode.
@@ -65,7 +64,7 @@ All snippets are saved in the project folder.
 ## Snippet Naming
 
 - **Live mode**: `snippet_1.wav`, `snippet_2.wav`, …
-- **File mode**: `snip_<round>_<index>.wav` (e.g., `snip_1_1.wav`).
+- **File mode**: `<project>_<round>_<index>.wav` (e.g., `myproject_1_1.wav`).
 
 ## Dependencies
 
