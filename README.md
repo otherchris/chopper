@@ -28,10 +28,11 @@ python3 -m pip install -e .
 ### Top-level CLI
 
 ```bash
-chopper [-f /path/to/audio.mp3|.wav]
+chopper [-f /path/to/audio.mp3|.wav] [-r /path/to/directory]
 ```
 
 - `-f, --file <file_path>`: Path to an existing audio file. If omitted, enters live recording mode.
+- `-r, --remove <directory>`: Preview and ask to delete each `.wav` file in the specified directory; skips project setup.
 
 **Workflow**:
 1. **Project name**: Enter a name; a new directory with that name will be created.
