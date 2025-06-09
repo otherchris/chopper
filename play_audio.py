@@ -74,9 +74,12 @@ def chop_sample(file_path):
         print(f"Error playing audio file: {str(e)}")
     # After chopping session, review saved snippets
     snippet_files = [f for f in os.listdir('.') if f.startswith(f"{project_name}_") and f.endswith('.wav')]
-    for snippet in snippet_files:
-        print(f"Review snippet: {snippet}")
-        wave_obj = sa.WaveObject.from_wave_file(snippet)
+    review_wav_files(snippet_files)
+
+def review_wav_files(file_paths):
+    for file_path in file_paths:
+        print(f"Review snippet: {file_path}")
+        wave_obj = sa.WaveObject.from_wave_file(file_path)
         play_obj = wave_obj.play()
         sys.stdout.write("Keep snippet? (y/N): ")
         sys.stdout.flush()
@@ -95,8 +98,8 @@ def chop_sample(file_path):
         rev_listener.join()
         print()
         if not decision['keep']:
-            os.remove(snippet)
-            print(f"Deleted snippet: {snippet}")
+            os.remove(file_path)
+            print(f"Deleted snippet: {file_path}")
     print("Snippet review complete.")
 
 def convert_mp3_to_wav(mp3_path):
